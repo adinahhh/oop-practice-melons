@@ -132,3 +132,20 @@ def get_sellability_report(melons):
         else:
             sellable = 'NOT SELLABLE'
         print(f'Harvested by {melon.harvester} from Field {melon.field_number} {sellable}')
+
+# further study
+
+
+def make_melons_from_log(filepath, melon_types):
+    file = open(filepath)
+
+    melon_type_dict = make_melon_type_lookup(melon_types)
+    melons = []
+
+    for line in file:
+        words = line.split()
+        melon = Melon(words[1], words[3], words[11],
+                      melon_type_dict[words[5]], words[8])
+        melons.append(melon)
+
+    return melons
